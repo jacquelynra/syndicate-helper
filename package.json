@@ -1,0 +1,28 @@
+{
+  "name": "syndicate-helper",
+  "version": "1.0.0",
+  "description": "Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacquelynra/syndicate-helper.git"
+  },
+  "author": "Jacquelynra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacquelynra/syndicate-helper/issues"
+  },
+  "homepage": "https://github.com/jacquelynra/syndicate-helper#readme",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0",
+    "tesseract.js": "^2.1.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  }
+}
