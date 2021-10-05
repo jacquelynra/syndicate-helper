@@ -2,7 +2,6 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 require('dotenv').config(); //initialize dotenv
-const { createConnection } = require('mysql');
 
 
 // Create a new client instance
