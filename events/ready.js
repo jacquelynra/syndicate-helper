@@ -12,6 +12,7 @@ module.exports = {
             console.log('¡MySQL listo!');
 			users.init(db); // initiates the table config
             users.sync(); //creates the table, if it doesn't already exist
+			client.database = users;
         })
         .catch(err => console.log(err));
 	},
