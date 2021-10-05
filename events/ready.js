@@ -2,6 +2,7 @@ module.exports = {
 	name: 'ready',
 	once: true,
 	execute(client) {
-		console.log(`Ready! Logged in as ${client.user.tag}`);
+        client.user.setActivity('New World', { type: 'PLAYING' });
+		console.log(`¡Bot listo! Loggeado como ${client.user.tag}`);
 	},
 };
