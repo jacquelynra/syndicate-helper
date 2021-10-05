@@ -24,16 +24,17 @@ module.exports = {
 //			.addUserOption(option => option.setName('target').setDescription('Usuario'))),
     
     async execute(interaction) {
+	    console.log(`${interaction.user.tag} en el canal de #${interaction.channel.name} triggereó la interación de perfil.`);
 
         // En vez de tirar la respuesta de una, primero le decimos al Discord de que existimos. [Si no responde en los primeros 3 seg, Discord lo da por perdido.]
-        await interaction.deferReply({ ephemeral: true });
+        await interaction.deferReply({ephemeral: true });
 
         //create a new Canvas
         const canvas = Canvas.createCanvas(464, 715);
         //make it "2D"
         const ctx = canvas.getContext('2d');
         //Set the Background
-        const background = await Canvas.loadImage(`./profile-blank.png`);
+        const background = await Canvas.loadImage(`./images/profile-blank.png`);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
         // Username
@@ -84,9 +85,10 @@ module.exports = {
         ctx.fillText('10', 288, 281); // Constitución
 
         // Setear todo lo que hicimos en una imagen
-        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'perfil.png');
 
         // Editar el "pensando" a la imagen que corresponde. Esto es por si el bot se demora o tiene lag.
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'perfil.png');
 		await interaction.editReply({ files: [attachment] , ephemeral: true });
+        
         }
 }
