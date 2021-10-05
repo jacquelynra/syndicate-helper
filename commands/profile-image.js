@@ -13,7 +13,7 @@ module.exports = {
     
     async execute(interaction) {
 
-	    console.log(`${interaction.user.tag} en el canal de #${interaction.channel.name} triggereó la interación de perfil.`);
+	    console.log(`${interaction.user.tag} en el canal de #${interaction.channel.name} triggereó la interación de perfil (${interaction.options.getUser('usuario').tag}). `);
 
         // En vez de tirar la respuesta de una, primero le decimos al Discord de que existimos. [Si no responde en los primeros 3 seg, Discord lo da por perdido.]
         await interaction.deferReply({ephemeral: true });
@@ -24,6 +24,9 @@ module.exports = {
         // Generar perfil
         // equivalent to: SELECT * FROM tags WHERE discordid = 'user.id' LIMIT 1;
         const UserData = await interaction.client.database.findOne({ where: { discordid: user.id } });
+        if (!UserData) {
+            return interaction.editReply(`No se pudo encontrar el perfil.`);
+        }
 
         // var everything
         var characterLevel = UserData.charlevel;
