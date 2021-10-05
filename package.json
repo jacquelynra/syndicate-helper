@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jacquelynra/syndicate-helper#readme",
   "dependencies": {
+    "@discordjs/builders": "^0.6.0",
     "@discordjs/rest": "^0.1.0-canary.0",
     "axios": "^0.22.0",
     "canvas": "^2.8.0",

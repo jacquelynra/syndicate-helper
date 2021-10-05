@@ -1,28 +1,38 @@
-const config = require("./config");
-const Canvas = require("canvas");
-const Discord = require("discord.js");
+const { SlashCommandBuilder } = require('@discordjs/builders'); // Para los slashs
+const Canvas = require("canvas"); // Para editar la imagen, TODO: pasarlo todo esto a un modulo
+const Discord = require("discord.js"); // Para mandar el mensaje? Idk
+const { registerFont, createCanvas } = require('canvas') //Para registrar la font más adelante
+// registerFont('./ShareTechMono-Regular.ttf', { family: 'Share Tech Mono' })
+const wait = require('util').promisify(setTimeout);
 
-const { registerFont, createCanvas } = require('canvas')
-registerFont('./ShareTechMono-Regular.ttf', { family: 'Share Tech Mono' })
-registerFont('./LibreBarcode39Text-Regular.ttf', { family: 'Libre Barcode 39 Text' })
 var moment = require('moment'); // require
 
-module.exports = function (client) {
+module.exports = {
 
-    const description = {
-        name: "WelcomeImages",
-        filename: "welcome.js",
-        version: "4.8"
-    }
-    //log that the module is loaded
-    console.log(` :: ⬜️ Module: ${description.name} | Loaded version ${description.version} from ("${description.filename}")`)
-    //fires every time when someone joins the server
-        client.on("guildMemberAdd", async member => {
+// Descripción del modulo
+
+    data: new SlashCommandBuilder()
+    .setName('perfil')
+    .setDescription('¡Mira tu perfil o el de alguien más!'),
+
+// Esto es para agregar subcomandos en un futuro.
+//
+//    .addSubcommand(subcommand =>
+//		subcommand
+//			.setName('usuario')
+//			.setDescription('Información sobre un usuario')
+//			.addUserOption(option => option.setName('target').setDescription('Usuario'))),
+    
+    async execute(interaction) {
+
+        // En vez de tirar la respuesta de una, primero le decimos al Discord de que existimos. [Si no responde en los primeros 3 seg, Discord lo da por perdido.]
+        await interaction.deferReply({ ephemeral: true });
+
         //create a new Canvas
         const canvas = Canvas.createCanvas(464, 715);
         //make it "2D"
         const ctx = canvas.getContext('2d');
-        //set the Background to the welcome.png
+        //Set the Background
         const background = await Canvas.loadImage(`./profile-blank.png`);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -57,7 +67,6 @@ module.exports = function (client) {
         var y = 335;
         var lineheight = 19;
         var lines = txt.split('\n');
-
         for (var i = 0; i<lines.length; i++)
         ctx.fillText(lines[i], x, y + (i*lineheight) );
         
@@ -74,13 +83,10 @@ module.exports = function (client) {
         ctx.fillText('10', 381, 245); // Concentración
         ctx.fillText('10', 288, 281); // Constitución
 
+        // Setear todo lo que hicimos en una imagen
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'perfil.png');
 
-        //get it as a discord attachment
-        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
-
-            message.channel.send(attachment);
+        // Editar el "pensando" a la imagen que corresponde. Esto es por si el bot se demora o tiene lag.
+		await interaction.editReply({ files: [attachment] , ephemeral: true });
         }
-    });
-
-
 }
