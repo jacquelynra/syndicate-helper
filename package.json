@@ -2,9 +2,11 @@
   "name": "syndicate-helper",
   "version": "1.0.0",
   "description": "Discord bot",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js",
+    "deploy": "node ./deploy-commands.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,9 @@
     "image-size": "^1.0.0",
     "moment": "^2.29.1",
     "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5",
+    "sequelize-auto": "^0.8.4",
     "sharp": "^0.29.1",
     "tesseract.js": "^2.1.5"
   },

@@ -5,25 +5,6 @@ require('dotenv').config(); //initialize dotenv
 const { createConnection } = require('mysql');
 
 
-// Prepare the mysql connection
-
-let con = createConnection({
-    host: process.env.mysql_host,
-    user: process.env.mysql_user,
-    password: process.env.mysql_password,
-    database: process.env.mysql_database
-  });
-
-// Then we are going to connect to our MySQL database and we will test this on errors
-con.connect(err => {
-    // Console log if there is an error
-    if (err) return console.log(err);
-
-    // No error found?
-    console.log(`¡La conexión con el servidor MySQL fue un éxito!`);
-});
-
-
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
