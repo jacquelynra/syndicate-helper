@@ -156,6 +156,10 @@ module.exports = class config extends Model {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    style: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     flags: {
       type: DataTypes.INTEGER,
       allowNull: false

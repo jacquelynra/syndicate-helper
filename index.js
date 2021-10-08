@@ -5,7 +5,7 @@ require('dotenv').config(); //initialize dotenv
 
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({intents: 32767,});
 
 // Command Handler
 client.commands = new Collection();
@@ -26,5 +26,22 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
+
+client.websiteCheck = async function(){
+    // Get the channel that we want to edit from config.json
+    const channel = client.channels.cache.get("896045918355324959");
+    // If the channel is not found, then log an error and exit process
+    if(!channel){
+      console.error('Bot is not in the channel to send edit');
+      process.exit(1);
+    } else {
+      // If the check comes back the website is down
+          // Log it and update the channel title
+          console.log('Website is down');
+          channel.setName(" 🔴 Status");
+      }
+    }
+
+
 
 client.login(process.env.CLIENT_TOKEN); //login bot using token
