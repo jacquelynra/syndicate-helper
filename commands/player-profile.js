@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders'); // Para los slashs
 const Discord = require("discord.js");
 const Canvas = require("canvas"); // Para editar la imagen, TODO: pasarlo todo esto a un modulo
+var moment = require('moment'); // require
 
 module.exports = {
 
@@ -23,14 +24,15 @@ module.exports = {
 
         // Generar perfil
         // equivalent to: SELECT * FROM tags WHERE discordid = 'user.id' LIMIT 1;
-        const UserData = await interaction.client.database.findOne({ where: { discordid: user.id } });
+        const UserData = await interaction.client.dbusers.findOne({ where: { discordid: user.id } });
         if (!UserData) {
             return interaction.editReply(`No se pudo encontrar el perfil.`);
         }
 
+        moment.locale('es'); // 'en'
         // var everything
         var characterLevel = UserData.charlevel;
-        var lastUpdated = UserData.updatedAt;
+        var lastUpdated = moment(UserData.updatedAt).fromNow(true);
         var guildName = (UserData.has_guild === true) ? UserData.guildname:"No tiene" ;
         var characterName = UserData.charname;
         var armasEspada = UserData.espada;

@@ -38,9 +38,7 @@ module.exports = {
     
     async execute(interaction) {
 
-	    console.log(`${interaction.user.tag} en el canal de #${interaction.channel.name} triggereó la interación de remover de la guerra. (${interaction.options.getUser('usuario').tag}`);
-
-		await interaction.reply('Pong!');
+		
 
         }
 }
