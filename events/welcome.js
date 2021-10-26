@@ -42,7 +42,7 @@ module.exports = {
         .setImage('attachment://bienvenida.png');
 
         //const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'perfil.png');
-        const channel = member.guild.channels.cache.find(ch => ch.id === "879525793028534326");
+        const channel = member.guild.channels.cache.find(ch => ch.id === "899380983948771328");
         channel.send({ embeds: [embed], files: [file] });
 
 }

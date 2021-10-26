@@ -13,7 +13,7 @@ async function weaponocr(buffer) {
         lang: "eng",
         oem: 2,
         psm: 6,
-        presets: ["digits"],e
+        presets: ["digits"],
       }
 
     const weaponWidth = 23

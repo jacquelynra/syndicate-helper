@@ -3,10 +3,6 @@ const { DataTypes, Model } = require('sequelize');
 module.exports = class config extends Model {
   static init(sequelize){
     return super.init({
-    warid: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false
@@ -15,20 +11,22 @@ module.exports = class config extends Model {
       type: DataTypes.STRING(50),
       allowNull: false
     },
-    zoneid: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    time: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
     isFinished: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
     },
     result: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    enemy: {
+      type: DataTypes.STRING(50),
+      allowNull: false
+    },
+    guild: {
+      type: DataTypes.STRING(50),
       allowNull: false
     }
   }, {
