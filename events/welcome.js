@@ -1,5 +1,6 @@
 const { MessageAttachment, MessageEmbed } = require('discord.js');
 const Canvas = require("canvas"); // Para editar la imagen, TODO: pasarlo todo esto a un modulo
+const ftc = require('fancy-text-converter');
 
 module.exports = {
 	name: 'guildMemberAdd',
@@ -20,7 +21,8 @@ module.exports = {
         ctx.font = "60px Alata"
         ctx.fillText(`Bienvenid@`, 500, 230)
         ctx.font = "105px Alata"
-        ctx.fillText(`${member.user.username}`, 500, 290)
+        var normaluser = ftc.normalise(member.user.username)
+        ctx.fillText(`${normaluser}`, 500, 290)
     
         ctx.beginPath()
         ctx.arc(500, 400, 64, 0, Math.PI * 2, false)
@@ -43,7 +45,9 @@ module.exports = {
 
         //const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'perfil.png');
         const channel = member.guild.channels.cache.find(ch => ch.id === "899380983948771328");
-        channel.send({ embeds: [embed], files: [file] });
+        channel.send({ content: `<@${member.id}>`, embeds: [embed], files: [file] });
+
+        console.log(`Se ha generado una nueva imagen de bienvenido para <@${member.id}>`);
 
 }
 }
