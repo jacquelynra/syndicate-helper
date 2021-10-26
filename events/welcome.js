@@ -1,5 +1,6 @@
 const { MessageAttachment, MessageEmbed } = require('discord.js');
-const Canvas = require("canvas"); // Para editar la imagen, TODO: pasarlo todo esto a un modulo
+const { registerFont, Canvas } = require('canvas')
+registerFont('./Alata-Regular.ttf', { family: 'Alata' })
 const ftc = require('fancy-text-converter');
 
 module.exports = {
