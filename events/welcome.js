@@ -1,5 +1,6 @@
 const { MessageAttachment, MessageEmbed } = require('discord.js');
-const { registerFont, Canvas } = require('canvas')
+const Canvas = require('canvas')
+const {registerFont} = require('canvas')
 registerFont('./Alata-Regular.ttf', { family: 'Alata' })
 const ftc = require('fancy-text-converter');
 
