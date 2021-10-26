@@ -2,7 +2,6 @@ const { MessageAttachment, MessageEmbed } = require('discord.js');
 const Canvas = require('canvas')
 const {registerFont} = require('canvas')
 registerFont('./Alata-Regular.ttf', { family: 'Alata' })
-const ftc = require('fancy-text-converter');
 
 module.exports = {
 	name: 'guildMemberAdd',
@@ -22,9 +21,8 @@ module.exports = {
         
         ctx.font = "60px Alata"
         ctx.fillText(`Bienvenid@`, 500, 230)
-        ctx.font = "105px Alata"
-        var normaluser = ftc.normalise(member.user.username)
-        ctx.fillText(`${normaluser}`, 500, 290)
+        ctx.font = "105px Alata, Cardo, Arial"
+        ctx.fillText(`${member.user.username}`, 500, 290)
     
         ctx.beginPath()
         ctx.arc(500, 400, 64, 0, Math.PI * 2, false)
