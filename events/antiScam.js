@@ -8,7 +8,7 @@ module.exports = {
     // Delete message function
     function deleteMessage() {
     message.delete()
-    if(message.member.permissions.has('ADMINISTRADOR')) return;
+    if(message.member.permissions.has('ADMINISTRATOR')) return; // In case the user is an administrator, it only deletes the message so that the bot does not crash
     message.guild.members.ban(message.member.id, { reason:"Scam Link" })
   }
     
