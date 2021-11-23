@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const links = require('./functions/links');
+const links = require('../functions/links');
 
 module.exports = {
   name: 'messageCreate',
